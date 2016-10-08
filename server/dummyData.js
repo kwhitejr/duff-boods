@@ -1,7 +1,7 @@
-import Post from './models/post';
+import Workout from './models/workout';
 
 export default function () {
-  Post.count().exec((err, count) => {
+  Workout.count().exec((err, count) => {
     if (count > 0) {
       return;
     }
@@ -34,10 +34,10 @@ export default function () {
       qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
       ipsum quia dolor sit amet.`;
 
-    const post1 = new Post({ name: 'Admin', title: 'Hello MERN', slug: 'hello-mern', cuid: 'cikqgkv4q01ck7453ualdn3hd', content: content1 });
-    const post2 = new Post({ name: 'Admin', title: 'Lorem Ipsum', slug: 'lorem-ipsum', cuid: 'cikqgkv4q01ck7453ualdn3hf', content: content2 });
+    const workout1 = new Workout({data: { name: 'Admin', title: 'Hello MERN', slug: 'hello-mern', cuid: 'cikqgkv4q01ck7453ualdn3hd', content: content1 }});
+    const workout2 = new Workout({data: { name: 'Admin', title: 'Lorem Ipsum', slug: 'lorem-ipsum', cuid: 'cikqgkv4q01ck7453ualdn3hf', content: content2 }});
 
-    Post.create([post1, post2], (error) => {
+    Workout.create([workout1, workout2], (error) => {
       if (!error) {
         // console.log('ready to go....');
       }

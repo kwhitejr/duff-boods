@@ -1,34 +1,29 @@
-/**
- * Client entry point
- */
 import React from 'react';
-import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import App from './App';
-import { configureStore } from './store';
+import ReactDOM from 'react-dom';
+import {AppContainer} from 'react-hot-loader';
 
-// Initialize store
-const store = configureStore(window.__INITIAL_STATE__);
-const mountApp = document.getElementById('root');
+import Root from './components/Root';
+import configureStore from './configureStore';
 
-render(
+const initialState = window.__INITIAL_STATE__;
+const store = configureStore(initialState);
+
+ReactDOM.render(
   <AppContainer>
-    <App store={store} />
+    <Root store={store} />
   </AppContainer>,
-  mountApp
+  document.getElementById('root')
 );
 
-// For hot reloading of react components
 if (module.hot) {
-  module.hot.accept('./App', () => {
-    // If you use Webpack 2 in ES modules mode, you can
-    // use <App /> here rather than require() a <NextApp />.
-    const NextApp = require('./App').default; // eslint-disable-line global-require
-    render(
+  module.hot.accept('./components/Root', () => {
+    const NextRoot = require('./components/Root').default; // eslint-disable-line global-require
+
+    ReactDOM.render(
       <AppContainer>
-        <NextApp store={store} />
+        <NextRoot store={store} />
       </AppContainer>,
-      mountApp
+      document.getElementById('root')
     );
   });
 }
